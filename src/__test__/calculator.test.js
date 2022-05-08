@@ -1,4 +1,5 @@
 const operations = require("./operations.js");
+const validator = require("./validator.js");
 
 describe("calculator-domain-test", () => {
   test("2개의 숫자에 대해 덧셈이 가능하다.", () => {
@@ -13,20 +14,26 @@ describe("calculator-domain-test", () => {
   test("2개의 숫자에 대해 나눗셈이 가능하다.", () => {
     expect(operations["/"](4, 2)).toBe(2);
   });
-  test("AC(All Clear)버튼을 누르면 0으로 초기화 한다.", () => {}); // ui?
-  test("숫자는 한번에 최대 3자리 수까지 입력 가능하다.", () => {}); // ui?
+  test("AC(All Clear)버튼을 누르면 0으로 초기화 한다.", () => {
+    let result = "";
+    result = operations["+"](1, 2);
+    expect(operations["AC"](result)).toBe("0");
+  });
+  test("숫자는 한번에 최대 3자리 수까지 입력 가능하다.", () => {
+    expect(validator["isValidLength"](1000)).toBe(false);
+  });
   test("계산 결과를 표현할 때 소수점 이하는 버림한다.", () => {
     expect(operations["/"](1, 2)).toBe(0);
   });
 });
-
+/*
 describe("calculator-UI-test", () => {
   test("숫자버튼을 클릭했을 때 해당 숫자를 디스플레이에 표시한다.", () => {});
   test("숫자버튼 입력 후 연산자를 클릭했을 때 해당 연산자를 디스플레이에 표시한다.", () => {});
   test("네자리 이상의 숫자 입력을 시도했을 경우 경고메세지를 띄운다.", () => {});
   test("숫자를 입력받지 않았을 때 연산자를 클릭하면 경고메세지를 띄운다.", () => {});
 });
-
+*/
 // TODO : 기능확장
 //  - [x] 숫자버튼을 클릭했을 때 해당 숫자를 디스플레이에 표시한다.
 //  > - [x] 2을 클릭하면 2이 디스플레이에 표시되는지 테스트 한다.
