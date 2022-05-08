@@ -1,29 +1,36 @@
-const sum = require("../js/sum.js");
-
-describe("calculator-test", () => {
-  //beforeEach(() => {});
+describe("calculator-domain-test", () => {
+  const mockAdd = jest.fn((a, b) => a + b);
+  const mockAbstract = jest.fn((a, b) => a - b);
+  const mockMultifly = jest.fn((a, b) => a * b);
+  const mockDivide = jest.fn((a, b) => Math.floor(a / b));
 
   test("2개의 숫자에 대해 덧셈이 가능하다.", () => {
-    expect(sum(1, 2)).toBe(3);
+    expect(mockAdd(1, 2)).toBe(3);
   });
-  test("2개의 숫자에 대해 뺄셈이 가능하다.", () => {});
-  test("2개의 숫자에 대해 곱셈이 가능하다.", () => {});
-  test("2개의 숫자에 대해 나눗셈이 가능하다.", () => {});
+  test("2개의 숫자에 대해 뺄셈이 가능하다.", () => {
+    expect(mockAbstract(1, 2)).toBe(-1);
+  });
+  test("2개의 숫자에 대해 곱셈이 가능하다.", () => {
+    expect(mockMultifly(4, 2)).toBe(8);
+  });
+  test("2개의 숫자에 대해 나눗셈이 가능하다.", () => {
+    expect(mockDivide(4, 2)).toBe(2);
+  });
   test("AC(All Clear)버튼을 누르면 0으로 초기화 한다.", () => {});
   test("숫자는 한번에 최대 3자리 수까지 입력 가능하다.", () => {});
-  test("계산 결과를 표현할 때 소수점 이하는 버림한다.", () => {});
+  test("계산 결과를 표현할 때 소수점 이하는 버림한다.", () => {
+    expect(mockDivide(1, 2)).toBe(0);
+  });
 });
 
-describe("calculator-test-2", () => {
-  //beforeEach(() => {});
-
+describe("calculator-UI-test", () => {
   test("숫자버튼을 클릭했을 때 해당 숫자를 디스플레이에 표시한다.", () => {});
   test("숫자버튼 입력 후 연산자를 클릭했을 때 해당 연산자를 디스플레이에 표시한다.", () => {});
   test("네자리 이상의 숫자 입력을 시도했을 경우 경고메세지를 띄운다.", () => {});
   test("숫자를 입력받지 않았을 때 연산자를 클릭하면 경고메세지를 띄운다.", () => {});
 });
 
-// 구현 기능 목록
+// TODO : 기능확장
 //  - [x] 숫자버튼을 클릭했을 때 해당 숫자를 디스플레이에 표시한다.
 //  > - [x] 2을 클릭하면 2이 디스플레이에 표시되는지 테스트 한다.
 

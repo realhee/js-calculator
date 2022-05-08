@@ -1,10 +1,11 @@
 {
   "name": "js-calculator",
   "version": "1.0.0",
+  "type": "module",
   "description": "<br/> <br/>",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
